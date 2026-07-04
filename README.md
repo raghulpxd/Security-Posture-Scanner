@@ -1,63 +1,93 @@
 # SPScanner
 
-SPScanner is a web-based Security Posture Scanner that analyzes a target website and provides a dashboard of security findings across multiple scanner modules. It also includes a local AI-powered Fix Assistant chatbot that helps explain detected issues and suggests remediation steps.
+## Tech Stack
 
----
-
-# Features
-
-## Scanner Modules
-SPScanner currently includes the following scanners:
-
-- **SSL Scanner** – checks SSL certificate details and related issues
-- **DNS Scanner** – checks DNS records and DNS-related findings
-- **Header Scanner** – checks important HTTP security headers
-- **Port Scanner** – checks exposed/open ports
-- **Technology Scanner** – detects technologies/frameworks used by the website
-- **Security Files Scanner** – checks for files such as `robots.txt`, `security.txt`, and `sitemap.xml`
-
-## Dashboard Features
-- Security score overview
-- Risk breakdown (Critical / High / Medium / Low / Passed)
-- Detailed scanner cards
-- Downloadable scan report
-- AI-powered Fix Assistant chatbot for remediation guidance
-
----
-
-# Tech Stack
-
-## Frontend
+### Frontend
 - React
 - Vite
 - Tailwind CSS
 
-## Backend
+### Backend
 - FastAPI
 - Python
 
-## AI Fix Assistant
+### AI Fix Assistant
 - Ollama
-- Mistral model
+- Mistral
 
----
 
-# Project Structure
+### Install these before running the project:
 
-```text
-SPScanner/
-│
-├── backend/
-│   ├── app/
-│   │   ├── scanners/
-│   │   ├── scoring/
-│   │   └── main.py
-│   └── ...
-│
-├── frontend/
-│   └── web-app/
-│       ├── src/
-│       ├── package.json
-│       └── ...
-│
-└── README.md
+- Python 3.10+
+- Node.js + npm
+- Git
+- Ollama
+
+# Setup Instructions
+### Quick Start
+### First-time setup
+
+After cloning the repo, run:
+
+setup_spscanner.bat which is present in the root of the spscanner folder
+
+This script will:
+
+create the backend virtual environment (if it doesn’t exist)
+install backend dependencies from requirements.txt
+install frontend dependencies with npm install
+pull the Mistral model in Ollama
+Run the application
+
+Make sure Ollama is running in the background, then run:
+
+run_spscanner.bat
+
+This will open:
+
+a backend terminal running FastAPI
+a frontend terminal running Vite
+What must be running for the app to work
+Required
+Backend terminal
+Frontend terminal
+Ollama running in the background
+Backend
+
+Runs on:
+
+http://127.0.0.1:8000
+Frontend
+
+Runs on something like:
+
+http://localhost:5173
+
+# Manual Run (without batch files)
+
+If you want to run it manually instead of using the .bat files:
+
+### Backend
+
+Open a terminal in the project root and run:
+
+cd backend
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+
+### Frontend
+
+Open a second terminal and run:
+
+cd frontend
+npm install
+npm run dev
+Ollama
+
+Run once to download the model:
+
+ollama pull mistral
+
+Then keep Ollama running in the background before using the Fix Assistant.
